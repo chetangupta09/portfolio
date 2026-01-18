@@ -3,241 +3,666 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chetan Gupta | Software Developer Portfolio</title>
+  <title>Chetan Gupta | Senior Software Developer</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #f7f9fc;
-      --text: #222;
-      --card: #fff;
-      --accent: #0a66c2;
+      --primary: #0a66c2;
+      --secondary: #1f2937;
+      --bg: #f8fafc;
+      --card: rgba(255,255,255,0.75);
+      --border: rgba(255,255,255,0.4);
+      --glass: blur(18px);
+      --shadow: 0 20px 40px rgba(0,0,0,0.08);
+      --radius: 18px;
     }
-    body.dark {
-      --bg: #0d1117;
-      --text: #e6edf3;
-      --card: #161b22;
-      --accent: #58a6ff;
+
+    * {
+      box-sizing: border-box;
     }
+
     body {
       margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+      background: linear-gradient(120deg, #eef4ff, #ffffff);
+      color: #0f172a;
+      scroll-behavior: smooth;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.4px;
+      color: var(--primary);
+    }
+
+    .nav-links a {
+      margin-left: 22px;
+      text-decoration: none;
+      color: #334155;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* ===== HERO ===== */
+    header {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: radial-gradient(circle at top right, #e0ecff, transparent 55%),
+                  radial-gradient(circle at bottom left, #f0f7ff, transparent 60%);
+    }
+
+    .hero {
+      max-width: 900px;
+      animation: fadeUp 0.9s ease-out;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 64px);
+      margin: 0 0 14px;
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #0a66c2, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 720px;
+      margin: 0 auto 26px;
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      margin-top: 22px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      margin: 6px;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0a66c2, #2563eb);
+      color: white;
+      box-shadow: 0 12px 24px rgba(37,99,235,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(37,99,235,0.35);
+    }
+
+    .btn-outline {
+      border: 2px solid #c7d8ff;
+      color: #1e40af;
+      background: rgba(255,255,255,0.6);
+    }
+
+    .btn-outline:hover {
+      background: #e0ecff;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 90px 20px;
+    }
+
+    .section-title {
+      font-size: 34px;
+      margin: 0 0 40px;
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 700px;
+      margin: -22px auto 50px;
+      color: #64748b;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 16.5px;
+      line-height: 1.8;
+      color: #334155;
+    }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .stat {
+      background: var(--card);
+      backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      text-align: center;
       transition: 0.3s;
     }
-    header {
-      padding: 60px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #0a66c2, #004182);
-      color: white;
+
+    .stat:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.12);
     }
-    header h1 {
+
+    .stat h3 {
       margin: 0;
-      font-size: 38px;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--primary);
     }
-    header p {
-      margin: 8px 0;
-      font-size: 17px;
-      opacity: 0.95;
-    }
-    header .links a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
+
+    .stat p {
+      margin: 6px 0 0;
+      font-size: 14px;
+      color: #64748b;
       font-weight: 600;
     }
-    .toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.15);
-      border: none;
-      color: white;
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
+
+    /* ===== SKILLS ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .skill-card {
+      background: var(--card);
+      backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.12);
+    }
+
+    .skill-card h4 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: #1e293b;
+    }
+
+    .skill-card p {
+      margin: 0;
       font-size: 14px;
+      color: #64748b;
+      line-height: 1.6;
     }
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 50px 20px;
-    }
-    h2 {
-      margin-top: 0;
-      font-size: 28px;
-      border-bottom: 3px solid var(--accent);
-      display: inline-block;
-      padding-bottom: 6px;
-    }
-    .about {
-      text-align: center;
-      font-size: 17px;
+
+    /* ===== EXPERIENCE ===== */
+    .timeline {
+      position: relative;
       max-width: 900px;
       margin: auto;
     }
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
-      justify-content: center;
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 18px;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, #bfdbfe, #3b82f6);
+      border-radius: 10px;
     }
-    .skill {
+
+    .timeline-item {
+      position: relative;
+      padding-left: 60px;
+      margin-bottom: 50px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0a66c2, #38bdf8);
+      box-shadow: 0 0 0 6px #e0ecff;
+    }
+
+    .timeline-card {
       background: var(--card);
-      padding: 8px 14px;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-      font-size: 14px;
+      backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
     }
-    .projects {
+
+    .timeline-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.12);
+    }
+
+    .timeline-card h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .timeline-card span {
+      display: block;
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .timeline-card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14.5px;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+    /* ===== PROJECTS ===== */
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
     }
-    .card {
+
+    .project-card {
       background: var(--card);
-      border-radius: 12px;
-      padding: 22px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
       transition: 0.3s;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .card:hover {
+
+    .project-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.12);
     }
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
+
+    .project-card h4 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      font-weight: 800;
     }
-    .tags {
-      font-size: 13px;
-      opacity: 0.75;
+
+    .project-card p {
+      font-size: 14.5px;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .project-tags {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #1e40af;
+      margin-bottom: 12px;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-box {
+      max-width: 700px;
+      margin: auto;
+      background: var(--card);
+      backdrop-filter: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 34px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .contact-box p {
+      font-size: 15.5px;
       margin: 10px 0;
     }
-    .links a {
+
+    .contact-box a {
+      color: var(--primary);
+      font-weight: 700;
       text-decoration: none;
-      color: var(--accent);
-      font-weight: 600;
-      margin-right: 12px;
-      font-size: 14px;
     }
-    .resume-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 18px;
-      background: var(--accent);
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-    }
+
+    /* ===== FOOTER ===== */
     footer {
+      padding: 30px 20px;
       text-align: center;
-      padding: 25px;
-      background: var(--card);
-      color: #777;
-      font-size: 14px;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      header {
+        min-height: auto;
+        padding-top: 100px;
+      }
+      .about-cards {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <button class="toggle" onclick="toggleTheme()">🌙 Toggle</button>
-  <h1>Chetan Gupta</h1>
-  <p>Senior Software Developer | Java | Spring Boot | Microservices | Cloud</p>
-  <div class="links">
-    <a href="https://linkedin.com/in/chetan-gupta" target="_blank">LinkedIn</a> |
-    <a href="https://github.com/chetangupta09" target="_blank">GitHub</a> |
-    <a href="#projects">Projects</a> |
-    <a href="#contact">Contact</a>
-  </div>
-</header>
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Chetan.dev</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<section class="about">
-  <h2>About Me</h2>
-  <p>
-    Senior Software Developer with 6+ years of experience building scalable backend and cloud-native systems
-    using Java, Spring Boot, Microservices, and REST APIs. Strong background in fintech, cloud platforms,
-    and enterprise applications with focus on performance optimization and business-driven solutions.
-  </p>
-  <a class="resume-btn" href="resume.pdf" download>⬇ Download Resume</a>
-</section>
+  <!-- ===== HERO ===== -->
+  <header>
+    <div class="hero">
+      <h1>Hi, I'm <span>Chetan Gupta</span></h1>
+      <p>
+        Senior Software Developer specializing in Java, Spring Boot, Microservices, and Cloud platforms —
+        building scalable, secure, and business-driven backend systems.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/chetan-gupta-b85666193/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </header>
 
-<section>
-  <h2>Skills</h2>
-  <div class="skills">
-    <span class="skill">Java</span>
-    <span class="skill">Spring Boot</span>
-    <span class="skill">Microservices</span>
-    <span class="skill">REST APIs</span>
-    <span class="skill">Hibernate</span>
-    <span class="skill">JPA</span>
-    <span class="skill">MySQL</span>
-    <span class="skill">Oracle</span>
-    <span class="skill">AWS</span>
-    <span class="skill">Docker</span>
-    <span class="skill">Kubernetes</span>
-    <span class="skill">Jenkins</span>
-    <span class="skill">System Design</span>
-    <span class="skill">Fintech Systems</span>
-  </div>
-</section>
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <p class="section-subtitle">
+      Results-driven Senior Software Developer with 6+ years of experience delivering enterprise-grade backend
+      and cloud-native applications across fintech, cloud management, and education domains.
+    </p>
 
-<section id="projects">
-  <h2>Projects (Auto-loaded from GitHub)</h2>
-  <div class="projects" id="projectList"></div>
-</section>
+    <div class="about-grid">
+      <div class="about-text">
+        I specialize in designing scalable microservices architectures, building high-performance REST APIs,
+        and delivering secure cloud-native platforms using Java, Spring Boot, Hibernate, and AWS. My background
+        includes hybrid cloud platforms, fintech systems, and large-scale education solutions — with strong focus
+        on clean architecture, performance optimization, and business-driven engineering.
+      </div>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:chetan.gupta0891@gmail.com">chetan.gupta0891@gmail.com</a></p>
-  <p>LinkedIn: <a href="https://linkedin.com/in/chetan-gupta" target="_blank">linkedin.com/in/chetan-gupta</a></p>
-  <p>GitHub: <a href="https://github.com/chetangupta09" target="_blank">github.com/chetangupta09</a></p>
-</section>
+      <div class="about-cards">
+        <div class="stat">
+          <h3>6+</h3>
+          <p>Years Experience</p>
+        </div>
+        <div class="stat">
+          <h3>25+</h3>
+          <p>Enterprise Projects</p>
+        </div>
+        <div class="stat">
+          <h3>15+</h3>
+          <p>Microservices Built</p>
+        </div>
+        <div class="stat">
+          <h3>5+</h3>
+          <p>Cloud Platforms</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  © 2026 Chetan Gupta | Portfolio Website
-</footer>
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <h2 class="section-title">Core Skills</h2>
 
-<script>
-  // 🌙 Dark mode toggle
-  function toggleTheme() {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-  }
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-  }
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4>Backend & Frameworks</h4>
+        <p>Java 8+, Spring Boot, Spring MVC, Hibernate, JPA, REST APIs, Microservices</p>
+      </div>
+      <div class="skill-card">
+        <h4>Databases</h4>
+        <p>MySQL, Oracle, SQL Server, PL/SQL</p>
+      </div>
+      <div class="skill-card">
+        <h4>Cloud & DevOps</h4>
+        <p>AWS (S3), Docker, Kubernetes, Jenkins, Eureka, Zuul Gateway, Config Server</p>
+      </div>
+      <div class="skill-card">
+        <h4>Frontend</h4>
+        <p>HTML, CSS, JavaScript, JSP, Bootstrap</p>
+      </div>
+      <div class="skill-card">
+        <h4>Tools & Platforms</h4>
+        <p>Git, Postman, IntelliJ, Eclipse, STS, Navicat, Jasper Reports, JMeter</p>
+      </div>
+      <div class="skill-card">
+        <h4>Architecture & Practices</h4>
+        <p>OOP, API Design, System Integration, Agile/Scrum, Performance Optimization</p>
+      </div>
+    </div>
+  </section>
 
-  // 🚀 Auto-load GitHub repos
-  const username = "chetangupta09"; // <-- replaced with your GitHub username
-  fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById("projectList");
-      data.slice(0, 6).forEach(repo => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <div>
-            <h3>${repo.name}</h3>
-            <p>${repo.description || "No description provided."}</p>
-            <div class="tags">${repo.language || "Multiple Technologies"}</div>
-          </div>
-          <div class="links">
-            <a href="${repo.html_url}" target="_blank">GitHub</a>
-            ${repo.homepage ? `<a href="${repo.homepage}" target="_blank">Live</a>` : ""}
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    });
-</script>
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience">
+    <h2 class="section-title">Professional Experience</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h3>Software Developer — Jio Pvt. Ltd</h3>
+          <span>July 2024 – Present</span>
+          <ul>
+            <li>Designed and developed enterprise-scale Hybrid Cloud Management Platform using Java, Spring Boot, Hibernate, Oracle, and Microservices architecture.</li>
+            <li>Built cost-optimization dashboards enabling monthly, quarterly, and yearly multi-cloud spend analysis.</li>
+            <li>Implemented advisory engines for VM resizing, shutdown automation, and subscription optimization.</li>
+            <li>Integrated automated email notifications for usage reporting and cloud efficiency insights.</li>
+            <li>Collaborated with DevOps, product, and platform teams to deliver secure and scalable cloud solutions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h3>Software Developer — Northcorp Software Pvt. Ltd</h3>
+          <span>July 2021 – June 2024</span>
+          <ul>
+            <li>Developed and maintained large-scale education and user management platforms using Spring Boot, Hibernate, MySQL, and AWS S3.</li>
+            <li>Designed RESTful APIs for OTP authentication, role-based access control, and organizational workflows.</li>
+            <li>Delivered features including online classes, exams, performance dashboards, chat, and reporting systems.</li>
+            <li>Improved system performance and reliability through query optimization and modular service design.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h3>Software Developer — Subhlakshmi Finance Pvt. Ltd</h3>
+          <span>Oct 2020 – July 2021</span>
+          <ul>
+            <li>Developed and enhanced Loan Management System (LMS) and Loan Origination System (LOS) platforms using Java 8, Spring MVC, Hibernate, SQL Server, and JSP.</li>
+            <li>Automated loan lifecycle workflows including credit evaluation, scoring, disbursement, EMI scheduling, and compliance reporting.</li>
+            <li>Built configurable loan products to support faster onboarding and improved operational efficiency.</li>
+            <li>Translated business requirements into scalable financial software systems.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h3>Junior Software Developer — Mark Tech Pvt. Ltd</h3>
+          <span>Dec 2019 – June 2020</span>
+          <ul>
+            <li>Contributed to ERP and enterprise automation systems using Spring MVC, Hibernate, MySQL, and JSP.</li>
+            <li>Developed modules for inventory management, billing, gatepass generation, and employee record systems.</li>
+            <li>Strengthened backend development fundamentals and system integration skills.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects">
+    <h2 class="section-title">Key Projects</h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <h4>Hybrid Cloud Management Platform — Jio</h4>
+        <div class="project-tags">Java • Spring Boot • Hibernate • JPA • Oracle • Microservices</div>
+        <p>
+          Built a centralized hybrid cloud management platform with cost optimization dashboards, advisory engines,
+          VM resizing automation, and real-time usage notifications for proactive cloud governance.
+        </p>
+      </div>
+
+      <div class="project-card">
+        <h4>School Management Platform — trunkie.co.in</h4>
+        <div class="project-tags">Java • Spring Boot • Hibernate • MySQL • AWS S3</div>
+        <p>
+          Developed a full-scale digital school ecosystem including online classes, exams, chat, timetable,
+          results, and analytics dashboards for student performance tracking.
+        </p>
+      </div>
+
+      <div class="project-card">
+        <h4>User Management System — trunkie.projectheen.com</h4>
+        <div class="project-tags">Java • Spring Boot • Hibernate • MySQL</div>
+        <p>
+          Designed secure authentication and authorization services including OTP, password recovery,
+          role-based access control, and multi-organization workflows.
+        </p>
+      </div>
+
+      <div class="project-card">
+        <h4>Loan Management System (LMS) — Subhlakshmi Finance</h4>
+        <div class="project-tags">Java • Spring MVC • Hibernate • SQL Server • JSP</div>
+        <p>
+          Automated loan servicing workflows including repayments, disbursements, charges,
+          and reporting with configurable product architecture.
+        </p>
+      </div>
+
+      <div class="project-card">
+        <h4>Loan Origination System (LOS) — Subhlakshmi Finance</h4>
+        <div class="project-tags">Java • Spring MVC • Hibernate • SQL Server • JSP</div>
+        <p>
+          Built end-to-end digital loan onboarding systems covering validation, scoring,
+          underwriting, and approvals — reducing processing time from days to minutes.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+
+    <div class="contact-box">
+      <p>Email: <a href="mailto:chetan.gupta0891@gmail.com">chetan.gupta0891@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/chetan-gupta" target="_blank">https://www.linkedin.com/in/chetan-gupta-b85666193/</a></p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    © 2026 Chetan Gupta • Built with ❤️ using HTML & CSS
+  </footer>
 
 </body>
 </html>
